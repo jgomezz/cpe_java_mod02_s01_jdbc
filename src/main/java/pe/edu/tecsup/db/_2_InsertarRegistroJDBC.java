@@ -2,7 +2,7 @@ package pe.edu.tecsup.db;
 
 import java.sql.*;
 
-public class InsertarRegistroJDBC {
+public class _2_InsertarRegistroJDBC {
 
     public static void main(String[] args) {
 
