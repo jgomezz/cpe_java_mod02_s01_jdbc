@@ -6,7 +6,7 @@ public class ConsultarRegistrosJDBC {
 
     public static void main(String[] args) {
 
-        final String URL = "jdbc:mariadb://localhost/almacen?useSSL=false";
+        final String URL = "jdbc:mariadb://localhost/almacen";
         final String USER = "root";
         final String PASSWORD = "root";
 
