@@ -1,15 +1,17 @@
-package pe.edu.tecsup.db;
+package pe.edu.tecsup.db.v1;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-public class _3_ActualizarRegistrosJDBC {
+public class _4_EliminarRegistrosJDBC {
 
     public static void main(String[] args) {
 
         final String URL = "jdbc:mariadb://localhost/almacen";
         final String USER = "root";
         final String PASSWORD = "root";
-
 
         try {
             // Cargar el driver
@@ -20,20 +22,20 @@ public class _3_ActualizarRegistrosJDBC {
 
             // Preparar la sentencia SQL
             String sql= """
-                UPDATE categorias SET nombre=? WHERE id=?
+                DELETE FROM categorias WHERE id = ?
             """;
             PreparedStatement stmt= con.prepareStatement(sql);
 
-            int id= 04; // PK del registro que se va a cambiar
-            stmt.setString(1, "Nombre Cambiado");
-            stmt.setInt(2, id);
+            // Configura el PK del registro a eliminar
+            int id = 4; // ID a borrar
+            stmt.setInt(1, id);
 
-            // Ejecutar la actualizacion
+            // Ejecutar el borrado
             int estado = stmt.executeUpdate();
             if (estado != 1)
-                throw new SQLException("No se pudo actualizar");
+                throw new SQLException("No se pudo eliminar");
 
-            System.out.printf("Se actualiza la categoria con id = %d \n", id);
+            System.out.printf("Se borro la categoria con id = %d \n", id);
 
             // Cerrar conexiones
             stmt.close();
@@ -44,5 +46,9 @@ public class _3_ActualizarRegistrosJDBC {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
+
     }
+
 }

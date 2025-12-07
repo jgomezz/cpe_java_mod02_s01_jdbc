@@ -1,8 +1,8 @@
-package pe.edu.tecsup.db;
+package pe.edu.tecsup.db.v1;
 
 import java.sql.*;
 
-public class _2_InsertarRegistroJDBC {
+public class _3_ActualizarRegistrosJDBC {
 
     public static void main(String[] args) {
 
@@ -20,32 +20,22 @@ public class _2_InsertarRegistroJDBC {
 
             // Preparar la sentencia SQL
             String sql= """
-                insert into categorias (nombre,descripcion,orden) values (?,?,?)
+                UPDATE categorias SET nombre=? WHERE id=?
             """;
             PreparedStatement stmt= con.prepareStatement(sql);
 
-            // Preparar los datos a Ingresar
-            stmt.setString(1, "Portatiles");
-            stmt.setString(2, "Portatiles de Gama Alta");
-            stmt.setInt(3, 5);
+            int id= 04; // PK del registro que se va a cambiar
+            stmt.setString(1, "Nombre Cambiado");
+            stmt.setInt(2, id);
 
-            // Ejecutar la insercion
+            // Ejecutar la actualizacion
             int estado = stmt.executeUpdate();
             if (estado != 1)
-                throw new SQLException("No se pudo insertar");
+                throw new SQLException("No se pudo actualizar");
 
-            // Obtener el ultimo id
-            int id= 0;
-            sql="select last_insert_id()";
-            stmt= con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next())
-                id= rs.getInt(1);
-
-            System.out.println("Se inserto el registro de categoria con ID " + id);
+            System.out.printf("Se actualiza la categoria con id = %d \n", id);
 
             // Cerrar conexiones
-            rs.close();
             stmt.close();
             con.close();
 

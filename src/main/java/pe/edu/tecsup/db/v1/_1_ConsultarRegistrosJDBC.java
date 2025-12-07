@@ -1,8 +1,10 @@
-package pe.edu.tecsup.db;
+package pe.edu.tecsup.db.v1;
 
 import java.sql.*;
 
 public class _1_ConsultarRegistrosJDBC {
+
+    final static String URL2 = "jdbc:mariadb://localhost/almacen";
 
     public static void main(String[] args) {
 
@@ -40,7 +42,14 @@ public class _1_ConsultarRegistrosJDBC {
             throw new RuntimeException(e);
         }
 
+        _1_ConsultarRegistrosJDBC app =  new _1_ConsultarRegistrosJDBC();
+
+        app.noHagoNada();
+
     }
 
+    public  void noHagoNada(){
+
+    }
 
 }
